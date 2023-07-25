@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="icons/pokelogo.ico" />
+    <link rel="stylesheet" href="style.css" id="index-css" />
+  </head>
+  <body>
+    <div id="container">
+      <section id="left-sec">
+        <nav>
+          <div id="logo-div">
+            <img id="logo" src="icons/pokelogo.png" draggable="false" />
+            <div id="logo-text">Pokémart</div>
+          </div>
+
+          <form action="" id="search-bar" onSubmit="return false">
+            <input placeholder="Search" type="text" autocomplete="off" />
+            <img id="search-icon" src="icons/search.png" draggable="false" />
+          </form>
+        </nav>
+        <div id="types">
+          <div id="type-text">Choose Your Type</div>
+          <hr />
+          <div id="type-btns">
+            <div>all</div>
+            <div>normal</div>
+            <div>fighting</div>
+            <div>flying</div>
+            <div>poison</div>
+            <div>ground</div>
+            <div>rock</div>
+            <div>bug</div>
+            <div>ghost</div>
+            <div>steel</div>
+            <div>fire</div>
+            <div>water</div>
+            <div>grass</div>
+            <div>electric</div>
+            <div>psychic</div>
+            <div>ice</div>
+            <div>dragon</div>
+            <div>fairy</div>
+          </div>
+        </div>
+        <div id="pokemons">
+          <div id="poke-container">
+            <div id="poke-results">
+              <div id="fetching">
+                Sending API request... This may take few seconds...
+              </div>
+            </div>
+            <template id="poke-card-template">
+              <div class="poke-card">
+                <div class="poke-name"></div>
+                <div class="poke-price"></div>
+                <div class="poke-img">
+                  <img src="" draggable="false" />
+                </div>
+                <div class="poke-count">
+                  <div class="count-btns minus" data-minus>-</div>
+                  <div class="count" data-count></div>
+                  <div class="count-btns plus" data-plus>+</div>
+                </div>
+              </div>
+            </template>
+            <div id="load-more-all" class="load-more-btns">
+              Load more Pokémon
+            </div>
+            <div id="load-more-btn" class="load-more-btns" data-type>
+              Load more Pokémon
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="right-sec">
+        <nav>
+          <div id="cart-text">Cart</div>
+        </nav>
+        <div>
+          <div id="cart"></div>
+          <template id="poke-item-template">
+            <div class="poke-item">
+              <div class="item-name"></div>
+              <div class="item-count"></div>
+              <div class="item-price"></div>
+              <img
+                class="delete-btn"
+                data-close
+                src="icons/close.png"
+                alt="X"
+                draggable="false"
+              />
+            </div>
+          </template>
+          <div id="bill-box">
+            <div id="no-items">
+              <img src="icons/pokeball.png" alt="" />
+              <div>No Pokémons Added</div>
+            </div>
+            <div id="bill">
+              <div class="bill-text">
+                Subtotal<span id="subtotal">$0.00</span>
+              </div>
+              <div class="bill-text">Tax 18%<span id="tax">$0.00</span></div>
+              <hr />
+              <div class="bill-total">Total<span id="total">$0.00</span></div>
+              <div id="buy-btn">Buy Now</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

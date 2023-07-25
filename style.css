@@ -1,0 +1,645 @@
+:root {
+  --mainbg: #111315;
+  /* --secbg: #292b2d; */
+  --secbg: #1f2123;
+  --white: #ffffff;
+  --grey: #c0c0c0;
+  --pokefont: "Chakra Petch", sans-serif;
+  --font: "Inter", sans-serif;
+  --shadow: 1px 1px #313131;
+  --transparent: #00ffff00;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  font-size: 20px;
+  letter-spacing: 1px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  background-color: var(--mainbg);
+  color: var(--white);
+  font-family: var(--pokefont);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--grey) trasparent;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--grey);
+  border-radius: 10px;
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+#container {
+  display: flex;
+  margin: 0% 6%;
+  width: auto;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  gap: 2%;
+}
+
+#left-sec {
+  width: 70%;
+  display: grid;
+  grid-template-rows: 9% 19% 69.5%;
+  gap: 10px;
+}
+
+#right-sec {
+  width: 30%;
+  display: grid;
+  grid-template-rows: 9% 90%;
+  gap: 10px;
+}
+
+/* Left Section */
+
+#left-sec nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo-div {
+  display: flex;
+  align-items: center;
+  margin-right: 40px;
+}
+
+#logo {
+  height: 44px;
+  width: 44px;
+  margin-right: 10px;
+}
+
+#logo-text {
+  font-size: 34px;
+  font-family: var(--pokefont);
+  /* -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgb(132, 165, 255); */
+}
+
+#search-icon {
+  height: 20px;
+  width: 20px;
+  margin: auto auto auto 0;
+  padding-bottom: 2px;
+}
+
+#search-bar {
+  /* width: 100%; */
+  height: 44px;
+  width: 280px;
+  margin-top: 2px;
+  background-color: var(--secbg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+#search-bar:focus-within {
+  border-color: var(--grey);
+  border: 1px solid var(--white);
+  /* box-shadow: 0 0 6px var(--grey); */
+}
+
+#search-bar input {
+  background: transparent;
+  width: 220px;
+  font-family: var(--pokefont);
+  font-size: 18px;
+  border: 0;
+  outline: none;
+  padding: 5px 5px 5px 18px;
+  color: var(--white);
+}
+
+::placeholder {
+  color: var(--grey);
+}
+
+#search-bar input:focus {
+  border: 0;
+}
+
+/* Types Section */
+
+/* #types { */
+/* height: 20%; */
+/* flex-grow: 1.2; */
+/* } */
+
+#type-text {
+  font-size: 26px;
+  margin: 0 5px;
+}
+
+#types > hr {
+  width: 20%;
+  color: var(--white);
+  font-size: 20px;
+  border: 2px solid;
+  text-align: left;
+  margin-left: 5px;
+}
+
+#type-btns {
+  display: grid;
+  font-size: 18px;
+  /* height: 45%; */
+  text-shadow: var(--shadow);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  text-align: center;
+  /* margin: 0 5px; */
+}
+
+#type-btns div {
+  margin: 5px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--grey);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+#type-btns div:active {
+  transform: scale(0.9);
+}
+
+#pokemons {
+  margin: 1% 0;
+  width: 100%;
+  justify-content: center;
+}
+
+#poke-container {
+  overflow-y: auto;
+  height: 100%;
+  border-radius: 30px;
+}
+
+#poke-results {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 8px;
+  justify-content: center;
+  gap: 2%;
+}
+
+#fetching {
+  font-size: 30px;
+  margin-top: 150px;
+}
+
+.load-more-btns {
+  margin: 20px auto 5px;
+  width: max-content;
+  display: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 20px;
+  color: var(--mainbg);
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  background-color: var(--white);
+  align-self: center;
+}
+
+.load-more-btns:active {
+  transform: scale(0.9);
+}
+
+.poke-card {
+  flex-grow: 1;
+  flex-shrink: 0;
+  max-width: 22.5%;
+  width: 22%;
+  aspect-ratio: 1/1;
+  display: grid;
+  padding: 5px;
+  margin: 10px 0;
+  background-color: var(--secbg);
+  border-radius: 20px;
+  grid-template-rows: 18% 12% 50% 20%;
+  transition: transform 0.2s ease-in;
+}
+
+.poke-card:hover {
+  box-shadow: 0 0 4px 0 #8b8b8b;
+  transform: translate(0px, -8px);
+}
+
+.poke-name {
+  display: flex;
+  text-transform: capitalize;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.poke-price {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 20px;
+  color: var(--grey);
+}
+
+.poke-img {
+  display: flex;
+  place-content: center;
+}
+
+.poke-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.poke-count {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  justify-content: flex-end;
+}
+
+.count {
+  margin: 5px 0;
+  padding: 5px;
+  width: 50px;
+  text-align: center;
+}
+
+.count-btns {
+  margin: 3px 8px;
+  padding: 8px;
+  height: 10px;
+  width: 10px;
+  line-height: 9px;
+  border: 2px solid var(--grey);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#not-found {
+  margin: 150px auto;
+  font-size: 36px;
+}
+
+/* Right Section */
+
+#right-sec nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cart-text {
+  font-size: 36px;
+  line-height: 45px;
+  margin-right: 12px;
+}
+
+#right-sec > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#bill-box {
+  flex-grow: 1;
+  min-height: 34%;
+  background-color: var(--secbg);
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin: 0 calc(3% + 12px) 3% 3%;
+}
+
+#no-items {
+  margin: auto;
+  font-size: 26px;
+  text-align: center;
+  color: var(--grey);
+  display: block;
+}
+
+#no-items img {
+  height: 45px;
+  width: 45px;
+  margin-bottom: 10px;
+  filter: opacity(0.6);
+}
+
+#cart {
+  margin: 0 3%;
+  overflow-y: auto;
+  counter-reset: count-item;
+}
+
+.poke-item {
+  width: calc(100% - 12px);
+  height: 60px;
+  box-sizing: border-box;
+  padding: 0 4%;
+  border-radius: 15px;
+  background-color: var(--secbg);
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-right: 12px;
+}
+
+.item-name {
+  font-size: 20px;
+}
+
+.item-name::before {
+  content: counter(count-item);
+  counter-increment: count-item;
+  color: var(--mainbg);
+  background-color: var(--white);
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 20px;
+  margin-right: 15px;
+}
+
+.item-count {
+  color: var(--grey);
+  margin-left: 10px;
+}
+
+.item-price {
+  margin-left: auto;
+  font-weight: 500;
+}
+
+.delete-btn {
+  object-fit: contain;
+  width: 0px;
+  transition: all 0.5s ease;
+  height: 26px;
+  margin-left: 0px;
+  cursor: pointer;
+}
+
+.poke-item:hover .delete-btn {
+  width: 26px;
+  margin-left: 20px;
+}
+
+#bill {
+  margin: 4%;
+  display: none;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.bill-text {
+  display: flex;
+  justify-content: space-between;
+  margin: 2% 0;
+}
+
+#bill hr {
+  border: none;
+  border-bottom: dashed 2px var(--grey);
+  width: 100%;
+  margin: 4% 0;
+}
+
+.bill-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 2% 0;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+#buy-btn {
+  margin: auto 0 5px;
+  width: 100%;
+  /* display: none; */
+  cursor: pointer;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  padding: 8px 0;
+  color: var(--mainbg);
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  background-color: var(--white);
+  align-self: center;
+}
+
+#buy-btn:active {
+  transform: scale(0.9);
+}
+
+@media only screen and (max-width: 1750px) {
+  html,
+  body {
+    font-size: 16px;
+  }
+
+  #logo-text {
+    font-size: 28px;
+  }
+
+  #logo {
+    height: 36px;
+    width: 36px;
+  }
+
+  #search-bar {
+    height: 36px;
+    width: 240px;
+    border-radius: 8px;
+  }
+
+  #search-icon {
+    height: 16px;
+    width: 16px;
+  }
+
+  #search-bar input {
+    font-size: 15px;
+    width: 190px;
+    padding: 4px 4px 4px 15px;
+  }
+
+  #type-text {
+    font-size: 20px;
+  }
+
+  #types > hr {
+    font-size: 16px;
+  }
+
+  #type-btns {
+    font-size: 14px;
+  }
+
+  #type-btns div {
+    margin: 4px;
+    padding: 5px;
+    border-radius: 8px;
+  }
+
+  #poke-container {
+    border-radius: 24px;
+  }
+
+  #fetching {
+    font-size: 24px;
+    margin-top: 130px;
+  }
+
+  .poke-card {
+    max-width: 22.2%;
+    border-radius: 16px;
+  }
+
+  .poke-card:hover {
+    transform: translate(0px, -6px);
+  }
+
+  .poke-name {
+    font-size: 18px;
+  }
+
+  .poke-price {
+    font-size: 16px;
+  }
+
+  .poke-count {
+    font-size: 16px;
+  }
+
+  .count {
+    width: 40px;
+  }
+
+  .count-btns {
+    margin: 2px 8px;
+    padding: 6px;
+    height: 8px;
+    width: 8px;
+    line-height: 6px;
+    border-radius: 4px;
+  }
+
+  .load-more-btns {
+    margin: 16px auto 4px;
+    font-size: 15px;
+    padding: 6px 16px;
+  }
+
+  #cart-text {
+    font-size: 30px;
+    line-height: 38px;
+    margin-right: 10px;
+  }
+
+  #bill-box {
+    border-radius: 12px;
+  }
+
+  #no-items {
+    font-size: 22px;
+  }
+
+  #no-items img {
+    height: 38px;
+    width: 38px;
+    margin-bottom: 8px;
+  }
+
+  .poke-item {
+    height: 50px;
+    border-radius: 10px;
+  }
+
+  .item-name {
+    font-size: 16px;
+  }
+
+  .item-name::before {
+    width: 23.5px;
+    height: 23.5px;
+    line-height: 23.5px;
+  }
+
+  .delete-btn {
+    width: 0px;
+    height: 23px;
+  }
+
+  .poke-item:hover .delete-btn {
+    width: 23px;
+    margin-left: 16px;
+  }
+
+  .bill-total {
+    font-size: 23px;
+  }
+
+  #buy-btn {
+    font-size: 24px;
+    padding: 6px 0;
+  }
+
+  #not-found {
+    margin: 130px auto;
+    font-size: 26px;
+  }
+}
