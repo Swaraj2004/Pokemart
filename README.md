@@ -4,10 +4,12 @@ A basic Billing System for a Pokemon Mart. Pokemon data is fetched through an ex
 
 **Functions:**
 
-- Live Search
-- Display by Types
-- Load more Button
-- Delete Item in Cart
+- Add items to cart
+- Live search
+- Filter and display by type
+- Load more button
+- Delete item in cart
+- View total bill before confirming purchase
 
 # Hosted Site
 
