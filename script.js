@@ -202,7 +202,7 @@ function searchPokemon(pokemon) {
       document.getElementById(`load-more-all`).style.display = "none";
       document.getElementById(`load-more-btn`).style.display = "none";
       document.getElementById("poke-results").innerHTML = "";
-      let value = e.target.value;
+      let value = e.target.value.toLowerCase();
       if (value == "") {
         document.getElementById("poke-results").innerHTML = "";
         displayPokemons(pokemon);
