@@ -13,7 +13,7 @@ A basic Billing System for a Pokemon Mart. Pokemon data is fetched through an ex
 
 # Hosted Site
 
-https://poke-mart.netlify.app/
+https://poke-mart.netlify.app
 
 # Images
 
