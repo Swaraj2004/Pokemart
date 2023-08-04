@@ -188,6 +188,7 @@ function displayByType(pokemon) {
         } else {
           document.getElementById(`load-more-btn`).style.display = "none";
         }
+        addRemove(pokemon);
       };
       addRemove(pokemon);
     });
