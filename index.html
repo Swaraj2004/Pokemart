@@ -63,7 +63,12 @@
                 <div class="poke-name"></div>
                 <div class="poke-price"></div>
                 <div class="poke-img">
-                  <img src="" draggable="false" />
+                  <img
+                    src=""
+                    draggable="false"
+                    class="hide-img"
+                    onload="this.classList.remove('hide-img')"
+                  />
                 </div>
                 <div class="poke-count">
                   <div class="count-btns minus" data-minus>-</div>
