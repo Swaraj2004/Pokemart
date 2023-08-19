@@ -107,6 +107,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 #logo-text {
   font-size: 1.7rem;
+  font-weight: 700;
 }
 
 #search-icon {

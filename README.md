@@ -1,6 +1,6 @@
 # PokeMart
 
-A basic Billing System for a Pokemon Mart. Pokemon data is fetched through an external API (https://pokeapi.co). Uses only Vanilla Javascript.
+A basic Billing System for a Pokemon Mart. Pokemon data is fetched through an external API (<https://pokeapi.co>). Uses only Vanilla Javascript.
 
 **Functions:**
 
@@ -11,13 +11,13 @@ A basic Billing System for a Pokemon Mart. Pokemon data is fetched through an ex
 - Delete item in cart
 - View total bill before confirming purchase
 
-# Hosted Site
+## Hosted Site
 
-https://poke-mart.netlify.app
+<https://poke-mart.netlify.app>
 
-# Images
+## Images
 
-![](https://i.imgur.com/K0Ls30h.png)
-![](https://i.imgur.com/pUsbewt.png)
-![](https://i.imgur.com/pZBSkFJ.png)
-![](https://i.imgur.com/CQP4yJX.png)
+![main](https://i.imgur.com/K0Ls30h.png)
+![cart](https://i.imgur.com/pUsbewt.png)
+![search](https://i.imgur.com/pZBSkFJ.png)
+![delete](https://i.imgur.com/CQP4yJX.png)
