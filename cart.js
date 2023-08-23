@@ -12,7 +12,7 @@ function addRemove(pokemon) {
       const id = e.currentTarget.getAttribute("data-plus") - 1;
       pokemon[id].count++;
       countdisplay.innerText = `${pokemon[id].count}`;
-      addItem(id, pokemon);
+      itemUpdater("add")(id, pokemon);
       billUpdater();
       itemListChecker();
       deleteItem(pokemon);
@@ -22,7 +22,7 @@ function addRemove(pokemon) {
       if (pokemon[id].count > 0) {
         pokemon[id].count--;
         countdisplay.innerText = `${pokemon[id].count}`;
-        removeItem(id, pokemon);
+        itemUpdater("remove")(id, pokemon);
         billUpdater();
         itemListChecker();
         deleteItem(pokemon);
@@ -31,49 +31,52 @@ function addRemove(pokemon) {
   }
 }
 
-function addItem(id, pokemon) {
-  const name = pokemon[id].name;
-  const count = pokemon[id].count;
-  const price = pokemon[id].price;
-  const itemList = document.getElementsByClassName("poke-item");
-  let found = false;
-  for (let i = 0; i < itemList.length; i++) {
-    let nametext = itemList[i].children[0].innerText;
-    if (nametext.toLowerCase() === name) {
-      itemList[i].children[1].innerText = `x${count}`;
-      itemList[i].children[2].innerText = `$${price * count}`;
-      found = true;
-      break;
+function itemUpdater(operation) {
+  return function (id, pokemon) {
+    const name = pokemon[id].name;
+    const count = pokemon[id].count;
+    const price = pokemon[id].price;
+    const itemList = document.getElementsByClassName("poke-item");
+    switch (operation) {
+      case "add":
+        let found = false;
+        for (let i = 0; i < itemList.length; i++) {
+          let nametext = itemList[i].children[0].innerText;
+          if (nametext.toLowerCase() === name) {
+            itemList[i].children[1].innerText = `x${count}`;
+            itemList[i].children[2].innerText = `$${price * count}`;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          const itemTemplate = document.getElementById("poke-item-template");
+          const item = itemTemplate.content.cloneNode(true);
+          item.querySelector(".item-name").innerText =
+            name.charAt(0).toUpperCase() + name.slice(1);
+          item.querySelector(".item-count").innerText = `x${count}`;
+          item.querySelector(".item-price").innerText = `$${price}`;
+          item.querySelector(".delete-btn").dataset.close = id;
+          document.getElementById("cart").append(item);
+        }
+        break;
+      case "remove":
+        for (let i = 0; i < itemList.length; i++) {
+          let nametext = itemList[i].children[0].innerText;
+          if (nametext.toLowerCase() === name) {
+            itemList[i].children[1].innerText = `x${count}`;
+            itemList[i].children[2].innerText = `$${price * count}`;
+            if (itemList[i].children[1].innerText === `x${0}`) {
+              itemList[i].remove();
+            }
+            break;
+          }
+        }
+        break;
+      default:
+        console.log("Invalid opration!");
     }
-  }
-  if (!found) {
-    const itemTemplate = document.getElementById("poke-item-template");
-    const item = itemTemplate.content.cloneNode(true);
-    item.querySelector(".item-name").innerText =
-      name.charAt(0).toUpperCase() + name.slice(1);
-    item.querySelector(".item-count").innerText = `x${count}`;
-    item.querySelector(".item-price").innerText = `$${price}`;
-    item.querySelector(".delete-btn").dataset.close = id;
-    document.getElementById("cart").append(item);
-  }
-}
-
-function removeItem(id, pokemon) {
-  const name = pokemon[id].name;
-  const count = pokemon[id].count;
-  const price = pokemon[id].price;
-  const itemList = document.getElementsByClassName("poke-item");
-  for (let i = 0; i < itemList.length; i++) {
-    let nametext = itemList[i].children[0].innerText;
-    if (nametext.toLowerCase() === name) {
-      itemList[i].children[1].innerText = `x${count}`;
-      itemList[i].children[2].innerText = `$${price * count}`;
-      if (itemList[i].children[1].innerText === `x${0}`) {
-        itemList[i].remove();
-      }
-      break;
-    }
-  }
+  };
 }
 
 function billUpdater() {
