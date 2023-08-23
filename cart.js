@@ -126,12 +126,13 @@ function countReset(pokemon) {
 function buy(pokemon) {
   document.getElementById("buy-btn").onclick = () => {
     document.getElementById("cart").innerHTML = "";
+    document.querySelector("#search-bar input").value = "";
     itemListChecker();
     countReset(pokemon);
     displayPokemons(pokemon);
     setTimeout(function () {
       alert("Thanks for purchase! ❤️");
-    }, 200);
+    }, 0);
   };
 }
 

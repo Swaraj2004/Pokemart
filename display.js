@@ -62,12 +62,12 @@ export function displayByType(pokemon) {
         type,
         typeno
       );
-      let read = 0;
-      document.getElementById("poke-results").innerHTML = "";
       if (type == "all") {
         displayPokemons(pokemon);
         return;
       }
+      document.getElementById("poke-results").innerHTML = "";
+      let read = 0;
       for (let i = 0, count = 0; i < Object.keys(pokemon).length; i++) {
         if (pokemon[i].type1 == type || pokemon[i].type2 == type) {
           count++;
@@ -92,7 +92,6 @@ export function displayByType(pokemon) {
           }
           read = i + 1;
         }
-        // console.log(read);
         if (read < Object.keys(pokemon).length) {
           document.getElementById(`load-more-btn`).style.display = "block";
         } else {
