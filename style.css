@@ -212,7 +212,7 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-top: 7.5rem;
 }
 
-.load-more-btns {
+#load-more-btn {
   margin: 1rem auto 0.25rem;
   width: max-content;
   display: none;
@@ -227,7 +227,7 @@ input[type="search"]::-webkit-search-results-decoration {
   align-self: center;
 }
 
-.load-more-btns:active {
+#load-more-btn:active {
   transform: scale(0.9);
 }
 
@@ -313,6 +313,7 @@ input[type="search"]::-webkit-search-results-decoration {
   font-size: 1.8rem;
   line-height: 2.25rem;
   margin-right: 0.6rem;
+  font-weight: 600;
 }
 
 #right-sec > div {

@@ -16,42 +16,39 @@ export function createCard(pokemon, i) {
 
 export function displayPokemons(pokemon) {
   document.getElementById("poke-results").innerHTML = "";
-  document.getElementById("load-more-btn").style.display = "none";
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  loadMoreBtn.dataset.type = "all";
+  loadMoreBtn.style.display = "block";
   for (let i = 0; i < 8; i++) {
     if (i == Object.keys(pokemon).length) {
-      document.getElementById("load-more-all").style.display = "none";
+      loadMoreBtn.style.display = "none";
       break;
     }
     createCard(pokemon, i);
   }
-  document.getElementById("load-more-all").style.display = "block";
-  addRemove(pokemon);
-  loadMoreAll(pokemon);
-}
-
-export function loadMoreAll(pokemon) {
-  document.getElementById("load-more-all").onclick = () => {
-    let nodes = document.getElementById("poke-results").childElementCount;
+  document.querySelector('[data-type="all"]').onclick = () => {
+    const nodes = document.getElementById("poke-results").childElementCount;
     for (let i = nodes; i < nodes + 8; i++) {
       if (i == Object.keys(pokemon).length) {
-        document.getElementById("load-more-all").style.display = "none";
+        loadMoreBtn.style.display = "none";
         break;
       }
       createCard(pokemon, i);
     }
     addRemove(pokemon);
   };
+  addRemove(pokemon);
 }
 
 export function displayByType(pokemon) {
-  let divs = document.querySelectorAll(".type");
+  const loadMoreBtn = document.getElementById("load-more-btn");
+  const divs = document.querySelectorAll(".type");
   divs.forEach(function (el) {
     el.addEventListener("click", (e) => {
       document.querySelector("#search-bar input").value = "";
-      document.getElementById("load-more-all").style.display = "none";
-      document.getElementById("load-more-btn").style.display = "block";
+      loadMoreBtn.style.display = "block";
       let type = e.currentTarget.innerHTML;
-      document.getElementById("load-more-btn").dataset.type = type;
+      loadMoreBtn.dataset.type = type;
       let typeno;
       Object.keys(types).forEach(
         (key) => {
@@ -79,7 +76,7 @@ export function displayByType(pokemon) {
         read = i + 1;
       }
       if (read >= Object.keys(pokemon).length) {
-        document.getElementById(`load-more-btn`).style.display = "none";
+        loadMoreBtn.style.display = "none";
       }
       document.querySelector(`[data-type="${type}"]`).onclick = () => {
         for (let i = read, count = 0; i < Object.keys(pokemon).length; i++) {
@@ -93,9 +90,9 @@ export function displayByType(pokemon) {
           read = i + 1;
         }
         if (read < Object.keys(pokemon).length) {
-          document.getElementById(`load-more-btn`).style.display = "block";
+          loadMoreBtn.style.display = "block";
         } else {
-          document.getElementById(`load-more-btn`).style.display = "none";
+          loadMoreBtn.style.display = "none";
         }
         addRemove(pokemon);
       };

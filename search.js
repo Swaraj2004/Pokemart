@@ -6,10 +6,10 @@ export function searchPokemon(pokemon) {
     "keyup",
     debounce((e) => {
       e.preventDefault();
-      document.getElementById(`load-more-all`).style.display = "none";
-      document.getElementById(`load-more-btn`).style.display = "block";
+      const loadMoreBtn = document.getElementById("load-more-btn");
       document.getElementById("poke-results").innerHTML = "";
-      document.getElementById("load-more-btn").dataset.type = "search";
+      loadMoreBtn.style.display = "block";
+      loadMoreBtn.dataset.type = "search";
       let value = e.target.value.toLowerCase();
       if (value == "") {
         document.getElementById("poke-results").innerHTML = "";
@@ -28,7 +28,7 @@ export function searchPokemon(pokemon) {
         read = i + 1;
       }
       if (read >= Object.keys(pokemon).length) {
-        document.getElementById(`load-more-btn`).style.display = "none";
+        loadMoreBtn.style.display = "none";
       }
       document.querySelector('[data-type="search"]').onclick = () => {
         for (let i = read, count = 0; i < Object.keys(pokemon).length; i++) {
@@ -42,9 +42,9 @@ export function searchPokemon(pokemon) {
           read = i + 1;
         }
         if (read < Object.keys(pokemon).length) {
-          document.getElementById(`load-more-btn`).style.display = "block";
+          loadMoreBtn.style.display = "block";
         } else {
-          document.getElementById(`load-more-btn`).style.display = "none";
+          loadMoreBtn.style.display = "none";
         }
         addRemove(pokemon);
       };
