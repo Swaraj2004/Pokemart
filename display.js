@@ -1,6 +1,19 @@
 import { types } from "./types.js";
 import { addRemove } from "./cart.js";
 
+export function createCard(pokemon, i) {
+  const results = document.getElementById("poke-results");
+  const cardTemplate = document.getElementById("poke-card-template");
+  const card = cardTemplate.content.cloneNode(true);
+  card.querySelector(".poke-name").innerText = `${pokemon[i].name}`;
+  card.querySelector(".poke-price").innerText = `$${pokemon[i].price}`;
+  card.querySelector(".poke-img img").src = `${pokemon[i].img}`;
+  card.querySelector(".count").innerText = `${pokemon[i].count}`;
+  card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
+  card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
+  results.append(card);
+}
+
 export function displayPokemons(pokemon) {
   document.getElementById("poke-results").innerHTML = "";
   document.getElementById("load-more-btn").style.display = "none";
@@ -9,16 +22,7 @@ export function displayPokemons(pokemon) {
       document.getElementById("load-more-all").style.display = "none";
       break;
     }
-    const results = document.getElementById("poke-results");
-    const cardTemplate = document.getElementById("poke-card-template");
-    const card = cardTemplate.content.cloneNode(true);
-    card.querySelector(".poke-name").innerText = `${pokemon[i].name}`;
-    card.querySelector(".poke-price").innerText = `$${pokemon[i].price}`;
-    card.querySelector(".poke-img img").src = `${pokemon[i].img}`;
-    card.querySelector(".count").innerText = `${pokemon[i].count}`;
-    card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
-    card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
-    results.append(card);
+    createCard(pokemon, i);
   }
   document.getElementById("load-more-all").style.display = "block";
   addRemove(pokemon);
@@ -33,16 +37,7 @@ export function loadMoreAll(pokemon) {
         document.getElementById("load-more-all").style.display = "none";
         break;
       }
-      const results = document.getElementById("poke-results");
-      const cardTemplate = document.getElementById("poke-card-template");
-      const card = cardTemplate.content.cloneNode(true);
-      card.querySelector(".poke-name").innerText = `${pokemon[i].name}`;
-      card.querySelector(".poke-price").innerText = `$${pokemon[i].price}`;
-      card.querySelector(".poke-img img").src = `${pokemon[i].img}`;
-      card.querySelector(".count").innerText = `${pokemon[i].count}`;
-      card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
-      card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
-      results.append(card);
+      createCard(pokemon, i);
     }
     addRemove(pokemon);
   };
@@ -79,16 +74,7 @@ export function displayByType(pokemon) {
           if (count == 9 || read == Object.keys(pokemon).length) {
             break;
           }
-          const results = document.getElementById("poke-results");
-          const cardTemplate = document.getElementById("poke-card-template");
-          const card = cardTemplate.content.cloneNode(true);
-          card.querySelector(".poke-name").innerText = `${pokemon[i].name}`;
-          card.querySelector(".poke-price").innerText = `$${pokemon[i].price}`;
-          card.querySelector(".poke-img img").src = `${pokemon[i].img}`;
-          card.querySelector(".count").innerText = `${pokemon[i].count}`;
-          card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
-          card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
-          results.append(card);
+          createCard(pokemon, i);
         }
         read = i + 1;
       }
@@ -102,18 +88,7 @@ export function displayByType(pokemon) {
             if (count == 9 || read == Object.keys(pokemon).length) {
               break;
             }
-            const results = document.getElementById("poke-results");
-            const cardTemplate = document.getElementById("poke-card-template");
-            const card = cardTemplate.content.cloneNode(true);
-            card.querySelector(".poke-name").innerText = `${pokemon[i].name}`;
-            card.querySelector(
-              ".poke-price"
-            ).innerText = `$${pokemon[i].price}`;
-            card.querySelector(".poke-img img").src = `${pokemon[i].img}`;
-            card.querySelector(".count").innerText = `${pokemon[i].count}`;
-            card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
-            card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
-            results.append(card);
+            createCard(pokemon, i);
           }
           read = i + 1;
         }
