@@ -168,13 +168,15 @@ input[type="search"]::-webkit-search-results-decoration {
   display: grid;
   font-size: 1rem;
   font-weight: 600;
+  padding-left: 0;
   text-shadow: var(--shadow);
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   text-align: center;
 }
 
-#type-btns div {
+#type-btns li {
+  list-style: none;
   margin: 0.25rem;
   padding: 0.3rem;
   background-color: var(--grey);

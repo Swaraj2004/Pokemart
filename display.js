@@ -42,12 +42,12 @@ export function displayPokemons(pokemon) {
 
 export function displayByType(pokemon) {
   const loadMoreBtn = document.getElementById("load-more-btn");
-  const divs = document.querySelectorAll(".type");
-  divs.forEach(function (el) {
-    el.addEventListener("click", (e) => {
+  const typeBtns = document.getElementById("type-btns");
+  typeBtns.addEventListener("click", (e) => {
+    if (e.target.tagName == "LI") {
       document.querySelector("#search-bar input").value = "";
       loadMoreBtn.style.display = "block";
-      let type = e.currentTarget.innerHTML;
+      let type = e.target.innerText.toLowerCase();
       loadMoreBtn.dataset.type = type;
       let typeno;
       Object.keys(types).forEach(
@@ -97,6 +97,6 @@ export function displayByType(pokemon) {
         addRemove(pokemon);
       };
       addRemove(pokemon);
-    });
+    }
   });
 }
