@@ -5,19 +5,19 @@ function addRemove(pokemon) {
   pokeResults.onclick = (e) => {
     if (e.target.dataset.plus) {
       const idx = e.target.getAttribute("data-plus") - 1;
-      const countdisplay = document.querySelector(`[data-count="${idx + 1}"]`);
+      const countDisplay = document.querySelector(`[data-count="${idx + 1}"]`);
       pokemon[idx].count++;
-      countdisplay.innerText = `${pokemon[idx].count}`;
+      countDisplay.innerText = `${pokemon[idx].count}`;
       itemUpdater("add")(idx, pokemon);
       billUpdater();
       itemListChecker();
       deleteItem(pokemon);
     } else if (e.target.dataset.minus) {
       const idx = e.target.getAttribute("data-minus") - 1;
-      const countdisplay = document.querySelector(`[data-count="${idx + 1}"]`);
+      const countDisplay = document.querySelector(`[data-count="${idx + 1}"]`);
       if (pokemon[idx].count > 0) {
         pokemon[idx].count--;
-        countdisplay.innerText = `${pokemon[idx].count}`;
+        countDisplay.innerText = `${pokemon[idx].count}`;
         itemUpdater("remove")(idx, pokemon);
         billUpdater();
         itemListChecker();
@@ -104,12 +104,15 @@ function itemListChecker() {
 function deleteItem(pokemon) {
   const cart = document.getElementById("cart");
   cart.onclick = (e) => {
-    const idx = e.target.dataset.close;
+    const idx = parseInt(e.target.dataset.close);
     if (idx) {
-      e.target.parentNode.remove();
+      const countDisplay = document.querySelector(`[data-count="${idx + 1}"]`);
       pokemon[idx].count = 0;
+      if (countDisplay) {
+        countDisplay.innerText = `${pokemon[idx].count}`;
+      }
+      e.target.parentNode.remove();
       billUpdater();
-      displayPokemons(pokemon);
       itemListChecker();
       deleteItem(pokemon);
     }
