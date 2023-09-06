@@ -1,41 +1,37 @@
 import { displayPokemons } from "./display.js";
 
 function addRemove(pokemon) {
-  const plusbtns = document.querySelectorAll(".plus");
-  const minusbtns = document.querySelectorAll(".minus");
-  const counts = document.querySelectorAll(".count");
-  for (let i = 0; i < plusbtns.length; i++) {
-    let plusbtn = plusbtns[i];
-    let minusbtn = minusbtns[i];
-    let countdisplay = counts[i];
-    plusbtn.onclick = (e) => {
-      const id = e.currentTarget.getAttribute("data-plus") - 1;
-      pokemon[id].count++;
-      countdisplay.innerText = `${pokemon[id].count}`;
-      itemUpdater("add")(id, pokemon);
+  const pokeResults = document.getElementById("poke-results");
+  pokeResults.onclick = (e) => {
+    if (e.target.dataset.plus) {
+      const idx = e.target.getAttribute("data-plus") - 1;
+      const countdisplay = document.querySelector(`[data-count="${idx + 1}"]`);
+      pokemon[idx].count++;
+      countdisplay.innerText = `${pokemon[idx].count}`;
+      itemUpdater("add")(idx, pokemon);
       billUpdater();
       itemListChecker();
       deleteItem(pokemon);
-    };
-    minusbtn.onclick = (e) => {
-      const id = e.currentTarget.getAttribute("data-minus") - 1;
-      if (pokemon[id].count > 0) {
-        pokemon[id].count--;
-        countdisplay.innerText = `${pokemon[id].count}`;
-        itemUpdater("remove")(id, pokemon);
+    } else if (e.target.dataset.minus) {
+      const idx = e.target.getAttribute("data-minus") - 1;
+      const countdisplay = document.querySelector(`[data-count="${idx + 1}"]`);
+      if (pokemon[idx].count > 0) {
+        pokemon[idx].count--;
+        countdisplay.innerText = `${pokemon[idx].count}`;
+        itemUpdater("remove")(idx, pokemon);
         billUpdater();
         itemListChecker();
         deleteItem(pokemon);
       }
-    };
-  }
+    }
+  };
 }
 
 function itemUpdater(operation) {
-  return function (id, pokemon) {
-    const name = pokemon[id].name;
-    const count = pokemon[id].count;
-    const price = pokemon[id].price;
+  return function (idx, pokemon) {
+    const name = pokemon[idx].name;
+    const count = pokemon[idx].count;
+    const price = pokemon[idx].price;
     const itemList = document.getElementsByClassName("poke-item");
     switch (operation) {
       case "add":
@@ -56,7 +52,7 @@ function itemUpdater(operation) {
             name.charAt(0).toUpperCase() + name.slice(1);
           item.querySelector(".item-count").innerText = `x${count}`;
           item.querySelector(".item-price").innerText = `$${price}`;
-          item.querySelector(".delete-btn").dataset.close = id;
+          item.querySelector(".delete-btn").dataset.close = idx;
           document.getElementById("cart").append(item);
         }
         break;
@@ -106,18 +102,18 @@ function itemListChecker() {
 }
 
 function deleteItem(pokemon) {
-  const itemList = document.getElementsByClassName("poke-item");
-  for (let i = 0; i < itemList.length; i++) {
-    itemList[i].children[3].onclick = () => {
-      const id = itemList[i].children[3].dataset.close;
-      itemList[i].remove();
-      pokemon[id].count = 0;
+  const cart = document.getElementById("cart");
+  cart.onclick = (e) => {
+    const idx = e.target.dataset.close;
+    if (idx) {
+      e.target.parentNode.remove();
+      pokemon[idx].count = 0;
       billUpdater();
       displayPokemons(pokemon);
       itemListChecker();
       deleteItem(pokemon);
-    };
-  }
+    }
+  };
 }
 
 function countReset(pokemon) {

@@ -11,6 +11,7 @@ export function createCard(pokemon, i) {
   card.querySelector(".count").innerText = `${pokemon[i].count}`;
   card.querySelector(".minus").dataset.minus = `${pokemon[i].id}`;
   card.querySelector(".plus").dataset.plus = `${pokemon[i].id}`;
+  card.querySelector(".count").dataset.count = `${pokemon[i].id}`;
   results.append(card);
 }
 
