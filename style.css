@@ -125,6 +125,7 @@ input[type="search"]::-webkit-search-results-decoration {
   background-color: var(--secbg);
   display: flex;
   justify-content: space-between;
+  border: 0.05rem solid var(--transparent);
   border-radius: 0.5rem;
 }
 
