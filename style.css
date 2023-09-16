@@ -66,7 +66,6 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 #container {
-  display: none;
   margin: 0% 6%;
   position: fixed;
   inset: 0;
