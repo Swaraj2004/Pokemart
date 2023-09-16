@@ -104,8 +104,8 @@ function itemListChecker() {
 function deleteItem(pokemon) {
   const cart = document.getElementById("cart");
   cart.onclick = (e) => {
-    const idx = parseInt(e.target.dataset.close);
-    if (idx) {
+    if (e.target.className === "delete-btn") {
+      const idx = parseInt(e.target.dataset.close);
       const countDisplay = document.querySelector(`[data-count="${idx + 1}"]`);
       pokemon[idx].count = 0;
       if (countDisplay) {
