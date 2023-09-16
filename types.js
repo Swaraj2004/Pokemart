@@ -25,7 +25,6 @@ function assignColors() {
     const childclr = types[i][child.innerHTML];
     child.style.backgroundColor = childclr;
     child.style.textTransform = "capitalize";
-    child.setAttribute("class", "type");
   }
 }
 

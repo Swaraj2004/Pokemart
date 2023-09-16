@@ -17,6 +17,9 @@ export function createCard(pokemon, i) {
 
 export function displayPokemons(pokemon) {
   document.getElementById("poke-results").innerHTML = "";
+  document
+    .querySelector("#type-btns li:first-of-type")
+    .setAttribute("class", "selected");
   const loadMoreBtn = document.getElementById("load-more-btn");
   loadMoreBtn.dataset.type = "all";
   loadMoreBtn.style.display = "block";
@@ -47,6 +50,11 @@ export function displayByType(pokemon) {
   typeBtns.addEventListener("click", (e) => {
     if (e.target.tagName == "LI") {
       document.querySelector("#search-bar input").value = "";
+      let oldSelected = document.querySelector(".selected") !== null;
+      if (oldSelected) {
+        document.querySelector(".selected").className = "";
+      }
+      e.target.className = "selected";
       loadMoreBtn.style.display = "block";
       let type = e.target.innerText.toLowerCase();
       loadMoreBtn.dataset.type = type;

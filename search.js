@@ -6,6 +6,10 @@ export function searchPokemon(pokemon) {
     "keyup",
     debounce((e) => {
       e.preventDefault();
+      let oldSelected = document.querySelector(".selected") !== null;
+      if (oldSelected) {
+        document.querySelector(".selected").className = "";
+      }
       const loadMoreBtn = document.getElementById("load-more-btn");
       document.getElementById("poke-results").innerHTML = "";
       loadMoreBtn.style.display = "block";

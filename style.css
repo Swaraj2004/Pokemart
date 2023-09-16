@@ -187,7 +187,12 @@ input[type="search"]::-webkit-search-results-decoration {
   cursor: pointer;
 }
 
-#type-btns div:active {
+.selected {
+  outline: 0.2rem solid var(--white);
+  outline-offset: -0.1rem;
+}
+
+#type-btns li:active {
   transform: scale(0.9);
 }
 
