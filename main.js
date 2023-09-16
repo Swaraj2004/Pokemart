@@ -6,7 +6,10 @@ import { searchPokemon } from "./search.js";
 
 async function main() {
   document.querySelector("#search-bar input").value = "";
-  assignColors();
+  window.onload = function () {
+    assignColors();
+    document.getElementById("container").style.display = "flex";
+  };
   const pokemon = await getPokemons();
   // console.log(pokemon);
   displayPokemons(pokemon);
