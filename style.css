@@ -359,6 +359,7 @@ input[type="search"]::-webkit-search-results-decoration {
 #cart {
   margin: 0 3%;
   overflow-y: auto;
+  overflow-x: hidden;
   counter-reset: count-item;
 }
 
@@ -412,6 +413,21 @@ input[type="search"]::-webkit-search-results-decoration {
 .poke-item:hover .delete-btn {
   width: 1.3rem;
   margin-left: 1rem;
+}
+
+.delete-animation {
+  animation: vanish 0.5s forwards;
+}
+
+@keyframes vanish {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(20rem);
+    opacity: 0;
+  }
 }
 
 #bill {

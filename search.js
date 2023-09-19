@@ -1,4 +1,3 @@
-import { addRemove } from "./cart.js";
 import { displayPokemons, createCard } from "./display.js";
 
 export function searchPokemon(pokemon) {
@@ -50,13 +49,11 @@ export function searchPokemon(pokemon) {
         } else {
           loadMoreBtn.style.display = "none";
         }
-        addRemove(pokemon);
       };
       if (document.getElementById("poke-results").childElementCount == 0) {
         document.getElementById("poke-results").innerHTML =
           '<div id="not-found">No Pokemon Found<div>';
       }
-      addRemove(pokemon);
     })
   );
 }

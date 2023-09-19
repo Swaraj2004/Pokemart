@@ -9,9 +9,6 @@ function addRemove(pokemon) {
       pokemon[idx].count++;
       countDisplay.innerText = `${pokemon[idx].count}`;
       itemUpdater("add")(idx, pokemon);
-      billUpdater();
-      itemListChecker();
-      deleteItem(pokemon);
     } else if (e.target.dataset.minus) {
       const idx = e.target.getAttribute("data-minus") - 1;
       const countDisplay = document.querySelector(`[data-count="${idx + 1}"]`);
@@ -19,9 +16,6 @@ function addRemove(pokemon) {
         pokemon[idx].count--;
         countDisplay.innerText = `${pokemon[idx].count}`;
         itemUpdater("remove")(idx, pokemon);
-        billUpdater();
-        itemListChecker();
-        deleteItem(pokemon);
       }
     }
   };
@@ -55,6 +49,8 @@ function itemUpdater(operation) {
           item.querySelector(".delete-btn").dataset.close = idx;
           document.getElementById("cart").append(item);
         }
+        billUpdater();
+        itemListChecker();
         break;
       case "remove":
         for (let i = 0; i < itemList.length; i++) {
@@ -63,8 +59,13 @@ function itemUpdater(operation) {
             itemList[i].children[1].innerText = `x${count}`;
             itemList[i].children[2].innerText = `$${price * count}`;
             if (itemList[i].children[1].innerText === `x${0}`) {
-              itemList[i].remove();
+              itemList[i].className += " delete-animation";
+              setTimeout(() => {
+                itemList[i].remove();
+                itemListChecker();
+              }, 500);
             }
+            billUpdater();
             break;
           }
         }
@@ -111,10 +112,12 @@ function deleteItem(pokemon) {
       if (countDisplay) {
         countDisplay.innerText = `${pokemon[idx].count}`;
       }
-      e.target.parentNode.remove();
-      billUpdater();
-      itemListChecker();
-      deleteItem(pokemon);
+      e.target.parentNode.className += " delete-animation";
+      setTimeout(() => {
+        e.target.parentNode.remove();
+        billUpdater();
+        itemListChecker();
+      }, 500);
     }
   };
 }
@@ -138,4 +141,4 @@ function buy(pokemon) {
   };
 }
 
-export { addRemove, buy };
+export { addRemove, deleteItem, buy };

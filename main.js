@@ -1,7 +1,7 @@
 import { assignColors } from "./types.js";
 import getPokemons from "./fetch.js";
 import { displayPokemons, displayByType } from "./display.js";
-import { addRemove, buy } from "./cart.js";
+import { addRemove, deleteItem, buy } from "./cart.js";
 import { searchPokemon } from "./search.js";
 
 async function main() {
@@ -15,6 +15,7 @@ async function main() {
   displayPokemons(pokemon);
   displayByType(pokemon);
   addRemove(pokemon);
+  deleteItem(pokemon);
   searchPokemon(pokemon);
   buy(pokemon);
 }

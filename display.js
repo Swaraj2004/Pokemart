@@ -1,5 +1,4 @@
 import { types } from "./types.js";
-import { addRemove } from "./cart.js";
 
 export function createCard(pokemon, i) {
   const results = document.getElementById("poke-results");
@@ -39,9 +38,7 @@ export function displayPokemons(pokemon) {
       }
       createCard(pokemon, i);
     }
-    addRemove(pokemon);
   };
-  addRemove(pokemon);
 }
 
 export function displayByType(pokemon) {
@@ -103,9 +100,7 @@ export function displayByType(pokemon) {
         } else {
           loadMoreBtn.style.display = "none";
         }
-        addRemove(pokemon);
       };
-      addRemove(pokemon);
     }
   });
 }
