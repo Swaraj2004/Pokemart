@@ -250,7 +250,7 @@ input[type="search"]::-webkit-search-results-decoration {
   margin: 0.5rem 0;
   background-color: var(--secbg);
   border-radius: 1rem;
-  grid-template-rows: 18% 12% 50% 20%;
+  grid-template-rows: 16% 10% 55% 19%;
   transition: transform 0.2s ease-in;
 }
 
@@ -272,10 +272,26 @@ input[type="search"]::-webkit-search-results-decoration {
   color: var(--grey);
 }
 
+.poke-img {
+  position: relative;
+}
+
+.poke-img::before {
+  content: "";
+  background: url(icons/pokeball.png) center/contain no-repeat;
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  rotate: -15deg;
+  translate: 0 -0.3rem;
+}
+
 .poke-img img {
   height: 100%;
   width: 100%;
   object-fit: contain;
+  scale: 0.9;
+  translate: 0 -0.3rem;
 }
 
 .hide-img {
