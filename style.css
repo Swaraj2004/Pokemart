@@ -331,14 +331,31 @@ input[type="search"]::-webkit-search-results-decoration {
 /* Right Section */
 
 #right-sec nav {
-  margin: auto;
+  margin: auto 0;
+}
+
+#cart-header {
+  margin: 0 calc(3% + 0.6rem) 0 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #cart-text {
   font-size: 1.8rem;
   line-height: 2.25rem;
-  margin-right: 0.6rem;
   font-weight: 600;
+}
+
+#cart-header a {
+  display: flex;
+  align-items: center;
+}
+
+#github-icon {
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
 }
 
 #right-sec > div {
